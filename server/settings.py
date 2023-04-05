@@ -47,7 +47,7 @@ TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [
-                Path(__file__).resolve().parent.parent.parent / 'static/orglist'
+                #Path(__file__).resolve().parent.parent.parent / 'static/orglist'
 
             ],
         'APP_DIRS': True,
@@ -117,7 +117,7 @@ USE_TZ = True
 STATIC_URL = 'static/'
 
 STATICFILES_DIRS = [
-    Path(__file__).resolve().parent.parent.parent / 'static/orglist',
+    #Path(__file__).resolve().parent.parent.parent / 'static/orglist',
 ]
 
 MEDIA_URL ='media/'

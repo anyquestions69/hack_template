@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;900&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static "style.css" %}">
+    <title>Участники рынка</title>
+</head>
+<body>
+    <div class="container">
+        <main>
+            <div class="header">
+                <div class="search">
+                    <form class='short' action="/" method="get">
+                   {{short.form}}
+                   
+                   <button id="short_search" type="submit">Поиск</button>
+                   <button type="button" id="opener" class="opener">Расширенные фильтры</span>
+                   
+                    
+                    </form>
+                   
+                    
+                </div>
+                <div class="slide" id="slide">
+                <form action="/" method="GET" class="full">
+                    <div class="filter_columns">
+                    <div class="third">
+                        {{filter.form.name}}
+                        {{filter.form.inn}}
+                        {{filter.form.address}}
+                    </div>
+                    <div class="third">
+                        {{filter.form.max_price__gt}}
+                        {{filter.form.max_price__lt}}
+                        {{filter.form.rating__gt}}
+                        {{filter.form.rating__lt}}</div>
+                        <div class="third">
+                           <label for="ordering">Сортировать по: </label> {{filter.form.ordering}}
+                        </div>
+                    </div>
+                    <button type="submit">Поиск</button>
+                </form>
+                </div>
+            </div>
+            <div id="content">
+                {% for user in members %}
+                <a href="/user/{{user.id}}"><div class="user">
+                    <div class="res_data">
+                       
+                       <div class="res_id">{{user.name}} ({{user.inn}}) </div> 
+
+                        <div class="res_category">Cреднее время выполнение заказа: {{user.average_order_time}}</div>
+                        <div class="res_desc">Всего сделок: {{user.order_count}} Успешных: {{user.amount_accepted}} </div>
+                        
+                        <div class="title">Мин: {{user.max_price}}₽ Макс: {{user.min_price}}₽</div>
+                         
+                    </div>
+                    <div class="res_info">
+                        <div class="info-top"><div class="rating">Аукцион</div>
+                        <div class="address">
+                            {{user.address}}
+                            </div></div>
+                            <div class="info-rating">
+                                <span class="rate">Рейтинг: </span><span class="number">{{user.rating}}</span>
+                            </div>
+                        
+                    </div>
+                </div></a>{% endfor %}
+            </div>
+
+        </main>
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+    <script src="{% static "script.js" %}"></script>
+</body>
+</html>
